@@ -1,12 +1,16 @@
-import os, sys
+# main.py
+import os
+import sys
 
-# फाइल छ कि नाइ चेक गर्ने
-if not os.path.isfile('masu.so'):
-    print(" [!] masu.so not found!")
+# Check if masu.so exists
+if not os.path.isfile("masu.so"):
+    print("[!] masu.so missing. Make sure it's in the same folder.")
     sys.exit()
 
 try:
-    import masu  # यदि masu.so छ भने यसले काम गर्नुपर्छ
-    masu.__EXECUTE_CORE__() # तपाईंको स्क्रिप्टको मुख्य फङ्सन रन गर्न
+    import masu   # import the compiled module
 except Exception as e:
-    print(f" [!] Error: {e}")
+    print("[!] Failed to load masu.so:", e)
+    sys.exit()
+
+print("[✓] masu.so loaded successfully!")
